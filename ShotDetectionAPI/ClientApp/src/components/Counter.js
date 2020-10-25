@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Map from '../misc/Map';
 
 export class Counter extends Component {
   static displayName = Counter.name;
@@ -25,6 +26,9 @@ export class Counter extends Component {
         <p aria-live="polite">Current count: <strong>{this.state.currentCount}</strong></p>
 
         <button className="btn btn-primary" onClick={this.incrementCounter}>Increment</button>
+        <div>
+        <Map/>
+        </div>
       </div>
     );
   }
