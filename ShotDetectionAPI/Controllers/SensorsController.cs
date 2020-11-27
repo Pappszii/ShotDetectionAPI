@@ -13,9 +13,9 @@ namespace ShotDetectionAPI.Controllers
     [ApiController]
     public class SensorsController : ControllerBase
     {
-        private readonly SensorContext _context;
+        private readonly DataBaseContext _context;
 
-        public SensorsController(SensorContext context)
+        public SensorsController(DataBaseContext context)
         {
             _context = context;
         }
@@ -39,6 +39,40 @@ namespace ShotDetectionAPI.Controllers
             }
 
             return sensor;
+        }
+
+        [HttpPut]
+        [Route("updateSensorVoltage")]
+        public async Task<IActionResult> UpdateSensorVoltage(int  id, float voltage)
+        {
+            var sensor = this._context.Sensors.Where(x => x.Id.Equals(id)).SingleOrDefault();
+
+            if (sensor == null)
+            {
+                return BadRequest();
+            }
+
+            sensor.Voltage = voltage;
+
+            _context.Entry(sensor).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!SensorExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return Ok();
         }
 
         // PUT: api/Sensors/5
@@ -77,7 +111,7 @@ namespace ShotDetectionAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Sensor>> PostSensor(Sensor sensor)
+        public async Task<ActionResult<Sensor>> PostSensor([FromBody] Sensor sensor)
         {
             _context.Sensors.Add(sensor);
             await _context.SaveChangesAsync();

@@ -13,9 +13,9 @@ namespace ShotDetectionAPI.Controllers
     [ApiController]
     public class DetectionsController : ControllerBase
     {
-        private readonly DetectionContext _context;
+        private readonly DataBaseContext _context;
 
-        public DetectionsController(DetectionContext context)
+        public DetectionsController(DataBaseContext context)
         {
             _context = context;
         }
@@ -77,8 +77,14 @@ namespace ShotDetectionAPI.Controllers
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
         [HttpPost]
-        public async Task<ActionResult<Detection>> PostDetection(Detection detection)
+        public async Task<ActionResult<Detection>> PostDetection(int sensorId)
         {
+            Detection detection = new Detection()
+            {
+                SensorId = sensorId,
+                TimeStamp = DateTime.UtcNow
+            };
+
             _context.Detections.Add(detection);
             await _context.SaveChangesAsync();
 
