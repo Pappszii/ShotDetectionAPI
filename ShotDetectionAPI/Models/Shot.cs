@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace ShotDetectionAPI.Models
 {
-    public class Detection
+    public class Shot
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public DateTime TimeStamp { get; set; }
-        public Sensor Sensor { get; set; }
-        public int SensorId { get; set; }
+        public float Latitude { get; set; }
+        public float Longitude { get; set; }
     }
 }

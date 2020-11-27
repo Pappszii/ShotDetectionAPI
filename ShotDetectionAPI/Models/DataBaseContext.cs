@@ -6,14 +6,18 @@ using System.Threading.Tasks;
 
 namespace ShotDetectionAPI.Models
 {
-    public class DetectionContext:DbContext
+    public class DataBaseContext:DbContext
     {
-        public DetectionContext(DbContextOptions<DetectionContext> options)
+        public DataBaseContext(DbContextOptions<DataBaseContext> options)
             : base(options)
         {
 
         }
 
         public DbSet<Detection> Detections { get; set; }
+        public DbSet<Shot> Shots { get; set; }
+        public DbSet<Sensor> Sensors { get; set; }
+
+
     }
 }

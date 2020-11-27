@@ -26,11 +26,8 @@ namespace ShotDetectionAPI
         public void ConfigureServices(IServiceCollection services)
         {
            
-            services.AddDbContext<DetectionContext>(opt =>
-               opt.UseInMemoryDatabase("Detections"));
-
-            services.AddDbContext<SensorContext>(opt =>
-               opt.UseInMemoryDatabase("Sensors"));
+            services.AddDbContext<DataBaseContext>(opt =>
+               opt.UseInMemoryDatabase("ShotDataBase"));
 
             services.AddControllersWithViews();
 
@@ -74,7 +71,7 @@ namespace ShotDetectionAPI
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseSpaStaticFiles();
 

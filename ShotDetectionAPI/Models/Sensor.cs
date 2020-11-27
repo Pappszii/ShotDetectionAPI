@@ -10,6 +10,7 @@ namespace ShotDetectionAPI.Models
         public long Id { get; set; }
         public float Latitude { get; set; }
         public float Longitude { get; set; }
-
+        public float Voltage { get; set; }
+        public List<Detection> Detections { get; set; }
     }
 }
