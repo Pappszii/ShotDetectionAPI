@@ -12,3 +12,30 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+
+.leaflet-container {
+  height: 100vh;
+}
+
+.map-container {
+  width: 100%;
+  max-width: 100%;
+}
+
+.map-column {
+  height: 100%;
+  top: 0px;
+  bottom: 0;
+  left: 0;
+  padding: 0px;
+  position: absolute;
+}
+
+.sidebar-column {
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  position: absolute;
+  overflow-y: scroll;
+  right: 0;
+}
